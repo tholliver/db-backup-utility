@@ -1,6 +1,6 @@
 ##  Database Backup Utility
 
-A database backup utility that can backup and restore any DB. Check [Supported databases](#suported-databases).
+A database backup utility that can backup and restore any DB. Check [Supported databases](#supported-databases).
 <!-- [Ref](https://roadmap.sh/projects/database-backup-utility/solutions?u=66e6d423f34c8868ec615e2f):
 https://roadmap.sh/projects/database-backup-utility -->
 
