@@ -33,7 +33,7 @@ npm install
 Here a sample with PostgreSQL:
 
 ```
-node cli backup -h localhost --user pguser --password secretPass --port 5433 --database DummyDatabase
+node cli backup -db postgresql -h localhost --user pguser --password secretPass --port 5433 --database DummyDatabase
 ```
 
 For more details: 
@@ -44,7 +44,7 @@ node cli -h
 node cli.js backup --help
 ```
 
-#### Suported databases
+#### Supported databases
 
 - MySQL 
 - PostgreSQL
