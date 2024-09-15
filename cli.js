@@ -4,6 +4,8 @@ const getFormatedDate = require('./utils')
 const { databaseSelected } = require('./db/index.js')
 // const readline = require('readline')
 
+const BACKUP_DIR = 'backups'
+
 program
   .version('0.0.1a')
   .description('Database Backup and Restore CLI')
@@ -21,8 +23,6 @@ program
   .action((options) => {
     const { db, host, user, port, password, database } = options
 
-    const dirName = 'backups'
-
     if (!database) {
       console.error('Database name is required for backup.')
       return
@@ -38,11 +38,7 @@ program
       port
     )
 
-    const command = `${dbInstance.binaries()} "host=${dbInstance.host} port=${
-      dbInstance.port
-    } dbname=${dbInstance.database} user=${dbInstance.user} password=${
-      dbInstance.password
-    }" > ${dirName}/DUMP_${backupTimestamp}.sql`
+    const command = `${dbInstance.dump()} > ${BACKUP_DIR}/DUMP_${backupTimestamp}.sql`
 
     exec(command, (error, stdout, stderr) => {
       if (error) {
@@ -50,10 +46,10 @@ program
         return
       }
       if (stderr) {
-        console.error(`Stderr during backup: ${stderr}`)
+        console.error(`Stderr during backup ${stderr}`)
         return
       }
-      console.log('Backup successful:', stdout)
+      console.log('Backup successful', stdout)
     })
   })
 

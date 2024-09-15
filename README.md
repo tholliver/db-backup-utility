@@ -1,10 +1,11 @@
 ##  Database Backup Utility
 
-A database backup utility that can backup and restore any DB. Check [Supported databases](#supported-databases).
-<!-- [Ref](https://roadmap.sh/projects/database-backup-utility/solutions?u=66e6d423f34c8868ec615e2f):
-https://roadmap.sh/projects/database-backup-utility -->
+A database backup utility that can backup and restore any DB. Check [Supported databases](#supported-databases). Here the full details: https://roadmap.sh/projects/database-backup-utility
 
-### Previus to use the tool: 
+<!-- 
+[Ref](https://roadmap.sh/projects/database-backup-utility/solutions?u=66e6d423f34c8868ec615e2f): -->
+
+### Previous to use the tool: 
 
 Please ensure that the binaries for the database you wish to dump or restore are installed. If you already have a server running, verify that the binaries are included in your system's PATH.
 
@@ -26,15 +27,27 @@ cd db-backup-utility
 npm install 
 ```
 
-## How tu use: 
+## How to use
 
-###  Examples: 
+###  Backup Examples: 
 
-Here a sample with PostgreSQL:
+In PostgreSQL:
 
 ```
 node cli backup -db postgresql -h localhost --user pguser --password secretPass --port 5433 --database DummyDatabase
 ```
+
+In MySQL:
+
+```
+node cli backup -db mysql -h localhost -u root -pw secretPass -p 3306 -d sakila
+```
+
+**Currently, the backup files are saved in the project's directory, inside the [backups] folder.**
+
+###  Restore Examples: 
+
+*FEATURE NOT AVAIABLE YET*
 
 For more details: 
 

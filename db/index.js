@@ -10,6 +10,12 @@ class MySQL {
   binaries() {
     return 'mysqldump'
   }
+
+  dump() {
+    return `${this.binaries()} -u ${this.user} -p${this.password} -h ${
+      this.host
+    } -P ${this.port} ${this.database}`
+  }
 }
 
 class PostgreSQL {
@@ -22,6 +28,12 @@ class PostgreSQL {
   }
   binaries() {
     return 'pg_dump'
+  }
+
+  dump() {
+    return `${this.binaries()} "host=${this.host} port=${this.port} dbname=${
+      this.database
+    } user=${this.user} password=${this.password}"`
   }
 }
 
@@ -44,7 +56,6 @@ const dbCredentialSetter = {
 
   default: () => {
     console.error('Database type not recognized or specified.')
-    return null
   },
 }
 
