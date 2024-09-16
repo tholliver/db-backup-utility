@@ -5,7 +5,7 @@ A database backup utility that can backup and restore any DB. Check [Supported d
 <!-- 
 [Ref](https://roadmap.sh/projects/database-backup-utility/solutions?u=66e6d423f34c8868ec615e2f): -->
 
-### Previous to use the tool: 
+### Previous to use the tool 
 
 Please ensure that the binaries for the database you wish to dump or restore are installed. If you already have a server running, verify that the binaries are included in your system's PATH.
 
@@ -13,7 +13,7 @@ Please ensure that the binaries for the database you wish to dump or restore are
 
 [MySQL Community Edition](https://www.mysql.com/products/community/)
 
-### How to install:
+### How to install
 
 Make sure you have installed [Node.js](https://nodejs.org/en)
 
@@ -54,10 +54,24 @@ For more details:
 ```
 node cli -h
 
-node cli.js backup --help
+node cli backup --help
 ```
 
 #### Supported databases
 
 - MySQL 
 - PostgreSQL
+
+
+### Future Features/Upcoming Features
+
+#### Mains
+- Backup Types
+- Compression
+- Cloud Storage
+- Logging and Notifications
+- Restore Operations (Selective Restore/Restore Backup) 
+
+### Maybes
+- JSON credentials reader
+- Custom backup DIR  
