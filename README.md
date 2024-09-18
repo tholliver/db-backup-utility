@@ -13,6 +13,8 @@ Please ensure that the binaries for the database you wish to dump or restore are
 
 [MySQL Community Edition](https://www.mysql.com/products/community/)
 
+[MongoDB Tools](https://www.mongodb.com/try/download/database-tools)
+
 ### How to install
 
 Make sure you have installed [Node.js](https://nodejs.org/en)
@@ -31,16 +33,22 @@ npm install
 
 ###  Backup Examples: 
 
-In PostgreSQL:
+For PostgreSQL:
 
 ```
 node cli backup -db postgresql -h localhost --user pguser --password secretPass --port 5433 --database DummyDatabase
 ```
 
-In MySQL:
+For MySQL:
 
 ```
-node cli backup -db mysql -h localhost -u root -pw secretPass -p 3306 -d sakila
+node cli backup -db mysql -h localhost -u root -pw secretPass -p 3306 -d DummyDatabase
+```
+
+For MongoDB:
+
+```
+node cli backup -db mongodb -h localhost -u admin -pw secretPass -d DummyDatabase
 ```
 
 **Currently, the backup files are saved in the project's directory, inside the [backups] folder.**
@@ -57,10 +65,11 @@ node cli -h
 node cli backup --help
 ```
 
-#### Supported databases
+#### Supported databases (Backup)
 
 - MySQL 
 - PostgreSQL
+- MongoDB
 
 
 ### Future Features/Upcoming Features

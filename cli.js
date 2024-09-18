@@ -27,6 +27,7 @@ program
       console.error('Database name is required for backup.')
       return
     }
+
     const backupTimestamp = getFormatedDate()
 
     const dbInstance = databaseSelected(
@@ -38,9 +39,14 @@ program
       port
     )
 
-    const command = `${dbInstance.dump()} > ${BACKUP_DIR}/DUMP_${backupTimestamp}.sql`
+    // Here we handle the operation: BACKUP | RESTORE
 
-    exec(command, (error, stdout, stderr) => {
+    const exe_command = dbInstance.backupCommand(
+      BACKUP_DIR,
+      'DUMP_' + backupTimestamp
+    )
+
+    exec(exe_command, (error, stdout, stderr) => {
       if (error) {
         console.error(`Error during backup: ${error.message}`)
         return

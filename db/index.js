@@ -16,6 +16,10 @@ class MySQL {
       this.host
     } -P ${this.port} ${this.database}`
   }
+
+  backupCommand(path, filename) {
+    return `${this.dump()} > ${path}/${filename}.sql`
+  }
 }
 
 class PostgreSQL {
@@ -35,12 +39,39 @@ class PostgreSQL {
       this.database
     } user=${this.user} password=${this.password}"`
   }
+
+  backupCommand(path, filename) {
+    return `${this.dump()} > ${path}/${filename}.sql`
+  }
+}
+
+class MongoDB {
+  constructor(user, database, password, host, port) {
+    this.user = user || 'admin'
+    this.database = database
+    this.password = password
+    this.host = host || 'localhost'
+    this.port = port || 27017
+  }
+  binaries() {
+    return 'mongodump'
+  }
+
+  dump() {
+    return `${this.binaries()} -h ${this.host}:${this.port} -d ${
+      this.database
+    } -u ${this.user} -p ${this.password} -o ./`
+  }
+
+  backupCommand(path, filename) {
+    return `${this.dump()} -o ./${path}`
+  }
 }
 
 const dbCredentialSetter = {
   mysql: (
     user = 'root',
-    database = 'defaultDB',
+    database = '',
     password = '',
     host = 'localhost',
     port = 3306
@@ -48,11 +79,19 @@ const dbCredentialSetter = {
 
   postgresql: (
     user = 'postgres',
-    database = 'defaultDB',
+    database = '',
     password = '',
     host = 'localhost',
     port = 5432
   ) => new PostgreSQL(user, database, password, host, port),
+
+  mongodb: (
+    user = 'admin',
+    database = '',
+    password = '',
+    host = 'localhost',
+    port = 27017
+  ) => new MongoDB(user, database, password, host, port),
 
   default: () => {
     console.error('Database type not recognized or specified.')
